@@ -4,3 +4,6 @@ myenv/
 
 #Ignore data folder
 data/
+
+#Ignore other files
+.DS_Store
