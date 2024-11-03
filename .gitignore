@@ -1,3 +1,6 @@
 # Ignore virtual environments
 venv/
 myenv/
+
+#Ignore data folder
+data/
