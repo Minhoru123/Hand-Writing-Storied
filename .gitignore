@@ -7,3 +7,6 @@ data/
 
 #Ignore other files
 .DS_Store
+
+#Ignore output folder
+output/
