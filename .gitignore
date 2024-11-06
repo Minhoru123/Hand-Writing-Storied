@@ -10,3 +10,14 @@ data/
 
 #Ignore output folder
 output/
+
+#Ignore some tests
+test/test_ocr.py
+test/test_image_color_analyzer.py
+
+#Ignore some files
+README.md
+
+#Ignore some folders
+preprocessed_data/
+enhanced_preprocessed_data/
