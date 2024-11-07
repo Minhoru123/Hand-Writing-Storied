@@ -18,18 +18,20 @@ class ImageStats:
     mean_intensity: float
 
 class DataLoader:
-    def __init__(self, data_dir: str):
-        """Initialize data loader with paths."""
-        # Setup basic paths and logging
+    def __init__(self, data_dir: str, target_width: int = 800, target_height: int = 600):
+        """Initialize data loader with paths and optional resize parameters."""
         self.data_dir = Path(data_dir)
         self.output_dir = Path("output/data_analysis_report")
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        self.target_width = target_width
+        self.target_height = target_height
         
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
 
     def analyze_images(self) -> List[ImageStats]:
-        """Analyze all images in directory."""
+        """Analyze all images in directory, including optional resizing."""
         image_stats = []
         image_files = list(self.data_dir.glob("*.png"))
         
@@ -46,11 +48,14 @@ class DataLoader:
                 img = cv2.imread(str(img_path))
                 if img is None:
                     continue
-                    
-                # Get basic stats
-                height, width = img.shape[:2]
-                is_grayscale = len(img.shape) == 2
-                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if not is_grayscale else img
+
+                # Resize the image if the target dimensions are specified
+                img_resized = cv2.resize(img, (self.target_width, self.target_height))
+                
+                # Get basic stats from the resized image
+                height, width = img_resized.shape[:2]
+                is_grayscale = len(img_resized.shape) == 2
+                gray = cv2.cvtColor(img_resized, cv2.COLOR_BGR2GRAY) if not is_grayscale else img_resized
                 
                 # Calculate text coverage
                 threshold = np.mean(gray) - np.std(gray)
@@ -65,7 +70,7 @@ class DataLoader:
                     text_coverage=text_coverage,
                     mean_intensity=np.mean(gray)
                 ))
-                
+
             except Exception as e:
                 self.logger.error(f"Error processing {img_path.name}: {e}")
                 
@@ -96,8 +101,8 @@ def main():
         data_dir = current_dir / "data" / "snippets"
         print(f"Current directory: {current_dir}")
         
-        # Run analysis
-        loader = DataLoader(data_dir)
+        # Run analysis with resizing to 800x600 by default
+        loader = DataLoader(data_dir, target_width=800, target_height=600)
         stats = loader.analyze_images()
         loader.generate_report(stats)
         
