@@ -9,7 +9,7 @@ This script performs basic preprocessing steps:
 - **Contrast Enhancement:** Enhances image contrast using CLAHE (Contrast Limited Adaptive Histogram Equalization).
 - **Sample Generation:** Creates sample output images showcasing the preprocessing steps applied to selected images.
 
-### `The enhanced_image_preprocessor.py`
+### `The                                                                                                                                            enhanced_image_preprocessor.py`
 
 This script applies more advanced preprocessing steps to prepare images for OCR:
 
