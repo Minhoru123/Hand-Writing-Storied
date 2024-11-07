@@ -33,7 +33,6 @@ This project implements an OCR (Optical Character Recognition) system for analyz
 * **Interpretation** :
 
   `0.7-1.0: High confidence (likely correct) 0.4-0.7: Medium confidence (needs verification) <0.4: Low confidence (likely incorrect)`
-  
 * **Project Results** :
 
   `Average Confidence: 0.101 (10.1%) Best Cases: 0.963 (96.3%)`
@@ -54,11 +53,11 @@ Image Characteristics:
 <<<<<<< Updated upstream
     def preprocess_image(self, image):
     # 1. Convert to grayscale
-=======
+=============================
+
 `def preprocess_image(self, image):
     # 1.Convert to grayscale
 
->>>>>>> Stashed changes
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 2. Enhance contrast (improve text visibility)
@@ -75,7 +74,7 @@ Image Characteristics:
         cv2.THRESH_BINARY,
         11, 2
     )
-    return binary 
+    return binary
 
 ### Step 3: OCR Engine Optimization
 
@@ -83,64 +82,35 @@ Image Characteristics:
 
 ` # Initial Parameters`
 
-`default_params = {
-    'paragraph': False,
-    'min_size': 10,
-    'text_threshold': 0.7,
-    'link_threshold': 0.4,
-    'contrast_ths': 0.2
-}`
+`default_params = {     'paragraph': False,     'min_size': 10,     'text_threshold': 0.7,     'link_threshold': 0.4,     'contrast_ths': 0.2 }`
 
 `Results: 28 % success rate`
 
 `# Optimized Parameters`
 
-`optimized_params = {     
-'paragraph': False,     
-'min_size': 5,          # Smaller text detection     
-'contrast_ths': 0.05,   # More aggressive contrast     
-'adjust_contrast': 1.5, # Enhanced contrast     
-'text_threshold': 0.3,  # Lower detection threshold     
-'link_threshold': 0.2,  # Lenient text linking     
-'mag_ratio': 2         # Increased image size }`
+`optimized_params = {      'paragraph': False,      'min_size': 5,          # Smaller text detection      'contrast_ths': 0.05,   # More aggressive contrast      'adjust_contrast': 1.5, # Enhanced contrast      'text_threshold': 0.3,  # Lower detection threshold      'link_threshold': 0.2,  # Lenient text linking      'mag_ratio': 2         # Increased image size }`
 
 `Results: 30% success rate`
 
 ## Tesseract Configuration Evolution
 
-`# Initial Config
-default_config = {
-    'lang': 'eng',
-    'config': '--psm 6'
-}`
+`# Initial Config default_config = {     'lang': 'eng',     'config': '--psm 6' }`
 
 `Results: 21% success rate`
 
-` #Optimized Config
-optimized_config = {
-    'lang': 'eng',
-    'config': '--psm 8 --oem 1',
-    'custom_oem_psm_config': True
-}`
+` #Optimized Config optimized_config = {     'lang': 'eng',     'config': '--psm 8 --oem 1',     'custom_oem_psm_config': True }`
 
 `Results: 22% success rate`
 
 ### Step 4: Output Format Implementation
 
 `# CSV Structure`
-`columns = [
-    'snippet_name',      # Original filename
-    'label',            # Recognized text
-    'confidence_score'  # 0-1 value
-]`
+`columns = [     'snippet_name',      # Original filename     'label',            # Recognized text     'confidence_score'  # 0-1 value ]`
 
-`Example Output
-snippet_name,label,confidence_score
-image1.png,detected_text,0.78
-image2.png, blank, 0.01`
-
+`Example Output snippet_name,label,confidence_score image1.png,detected_text,0.78 image2.png, blank, 0.01`
 
 ## Implementation Details
+
 ### Key Components
 
 1. **Image Preprocessor**
@@ -161,6 +131,7 @@ image2.png, blank, 0.01`
 ### Performance Metrics
 
 EasyOCR Performance:
+
 - Initial Success Rate: 28%`
 - Optimized Success Rate: 30%`
 - Average Confidence: 0.101
@@ -168,6 +139,7 @@ EasyOCR Performance:
 - Processing Time: ~0.3s per image`
 
 Tesseract Performance:
+
 - Initial Success Rate: 21%
 - Final Success Rate: 22%
 - Average Confidence: 0.009
@@ -189,9 +161,7 @@ Tesseract Performance:
 ### Dependencies
 
 `# Create virtual environment`
-`python -m venv myenv
-myenv\Scripts\activate  # Windows
-source myenv/bin/activate # Linux/Mac`
+`python -m venv myenv myenv\Scripts\activate  # Windows source myenv/bin/activate # Linux/Mac`
 
 # Install required packages
 
@@ -199,8 +169,6 @@ source myenv/bin/activate # Linux/Mac`
 
 ### Running the Project
 
-`#Preprocess images
-python src/enhanced_image_preprocessor.py`
+`#Preprocess images python src/enhanced_image_preprocessor.py`
 
-`#Generate final CSV
-python src/csv_output_report.py`
+`#Generate final CSV python src/csv_output_report.py`
