@@ -73,7 +73,7 @@ Image Characteristics:
 
 ### Step 3: OCR Engine Optimization
 
-## EasyOCR Configuration Evolution
+##### EasyOCR Configuration Evolution
 
 ` # Initial Parameters`
 
@@ -87,7 +87,7 @@ Image Characteristics:
 
 `Results: 30% success rate`
 
-## Tesseract Configuration Evolution
+##### Tesseract Configuration Evolution
 
 `# Initial Config default_config = {     'lang': 'eng',     'config': '--psm 6' }`
 
