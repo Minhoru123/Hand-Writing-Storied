@@ -86,6 +86,6 @@ class EnhancedImagePreprocessor:
 
         print(f"Sample images saved to {output_dir}")
 
-# Usage example
+# Usage
 preprocessor = EnhancedImagePreprocessor()
-preprocessor.preprocess_sample_images('data/snippets', num_samples=5)  # Adjust the directory as needed
+preprocessor.preprocess_sample_images('data/snippets', num_samples=100)  

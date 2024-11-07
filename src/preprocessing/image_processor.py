@@ -46,4 +46,4 @@ class SimplePreprocessor:
 
 # Usage example
 preprocessor = SimplePreprocessor()
-preprocessor.preprocess_sample_images('data/snippets', num_samples=5)  # Adjust the directory as needed
+preprocessor.preprocess_sample_images('data/snippets', num_samples=100)  # Adjust the directory as needed
