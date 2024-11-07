@@ -47,12 +47,18 @@ Image Characteristics:
 
 - Dimensions: 515x46 pixels (average)
 - Format: RGB-stored grayscale
-- Challenges: Background artifacts, variable text positioning 
+- Challenges: Background artifacts, variable text positioning
 
 ### Step 2: Preprocessing Pipeline Implementation
 
+<<<<<<< Updated upstream
     def preprocess_image(self, image):
     # 1. Convert to grayscale
+=======
+`def preprocess_image(self, image):
+    # 1.Convert to grayscale
+
+>>>>>>> Stashed changes
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 2. Enhance contrast (improve text visibility)
