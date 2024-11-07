@@ -50,11 +50,6 @@ Image Characteristics:
 
 ### Step 2: Preprocessing Pipeline Implementation
 
-<<<<<<< Updated upstream
-    def preprocess_image(self, image):
-    # 1. Convert to grayscale
-=============================
-
 `def preprocess_image(self, image):
     # 1.Convert to grayscale
 
