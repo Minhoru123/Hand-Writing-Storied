@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict
 from tqdm import tqdm
 import pandas as pd
+import os
 
 
 class TesseractHandler:
@@ -99,10 +100,6 @@ class TesseractHandler:
             # Preprocess
             processed_image = self.preprocess_image(image)
             
-            # Save debug image
-            debug_path = Path(image_path).parent / f"debug_tesseract_{Path(image_path).name}"
-            cv2.imwrite(str(debug_path), processed_image)
-
             # Configure Tesseract for handwriting
             custom_config = r'--oem 3 --psm 7 -c tessedit_char_whitelist="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" -c textord_heavy_nr=1 -c textord_min_linesize=3'
 
@@ -115,13 +112,22 @@ class TesseractHandler:
             # Calculate confidence
             confidences = [conf for conf in data['conf'] if conf > 0]
             confidence = sum(confidences) / len(confidences) if confidences else 0
+            
+            # Convert confidence to 0-1 scale
+            confidence = confidence / 100
+            
+            # Only save debug image if confidence is above threshold
+            debug_path = None
+            if confidence > 0.1:  # You can adjust this threshold
+                debug_path = Path(image_path).parent / f"debug_tesseract_{Path(image_path).name}"
+                cv2.imwrite(str(debug_path), processed_image)
 
             result_dict = {
                 'filename': Path(image_path).name,
                 'text': text,
-                'confidence': confidence / 100,  # Convert to 0-1 scale
-                'success': bool(text),
-                'processed_path': str(debug_path)
+                'confidence': confidence,
+                'success': bool(text and confidence > 0.1),
+                'processed_path': str(debug_path) if debug_path else None
             }
 
             print(f"Final result: {result_dict}")
@@ -137,13 +143,30 @@ class TesseractHandler:
                 'error': str(e)
             }
     
-    def process_directory(self, input_dir: str, output_dir: str) -> pd.DataFrame:
+    def clean_debug_files(self, directory: Path):
+        """Clean up existing debug files in the directory."""
+        print("Cleaning up existing debug files...")
+        count = 0
+        for debug_file in directory.glob("debug_tesseract_*.png"):
+            try:
+                debug_file.unlink()
+                count += 1
+            except Exception as e:
+                print(f"Error deleting {debug_file}: {e}")
+        print(f"Cleaned up {count} debug files")
+    
+    def process_directory(self, input_dir: str, output_dir: str, clean_existing: bool=True) -> pd.DataFrame:
         input_path = Path(input_dir)
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
 
-        # Get all PNG files
-        image_files = list(input_path.glob('*.png'))
+        # Clean existing debug files if requested
+        if clean_existing:
+            self.clean_debug_files(input_path)
+
+        # Get all PNG files (excluding debug files)
+        image_files = [f for f in input_path.glob('*.png') 
+                      if not f.name.startswith('debug_')]
         results = []
 
         print(f"Processing {len(image_files)} images with Tesseract...")
