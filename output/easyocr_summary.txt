@@ -1,0 +1,29 @@
+OCR Processing Summary (EasyOCR)
+============================
+
+Total images processed: 100
+Successful: 54
+Failed: 46
+Average confidence: 0.051
+
+Top 5 Results by Confidence:
+
+File: 007625911_007625911_03861_22.png
+Text: JZL
+Confidence: 0.436
+
+File: 007646627_007646627_02226_22.png
+Text: 41
+Confidence: 0.358
+
+File: 007646537_007646537_03240_22.png
+Text: 27
+Confidence: 0.299
+
+File: 007644572_007644572_01851_22.png
+Text: Havzn
+Confidence: 0.209
+
+File: 007646650_007646650_00026_22.png
+Text: ~oik
+Confidence: 0.207

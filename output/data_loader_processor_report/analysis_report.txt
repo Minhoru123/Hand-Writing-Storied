@@ -1,0 +1,8 @@
+Image Dataset Analysis
+===================
+
+Total Images: 100
+Average Dimensions: 515x46
+Grayscale Images: 0
+Average Text Coverage: 11.7%
+Average Intensity: 185.6

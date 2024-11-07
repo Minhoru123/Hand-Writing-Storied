@@ -1,0 +1,29 @@
+OCR Processing Summary (Tesseract)
+==============================
+
+Total images processed: 200
+Successful: 31
+Failed: 169
+Average confidence: 0.007
+
+Top 5 Results by Confidence:
+
+File: 007625955_007625955_00155_22.png
+Text: situa startle wear a atsacona
+Confidence: 0.290
+
+File: debug_easyocr_007644572_007644572_05210_22.png
+Text: VEE
+Confidence: 0.230
+
+File: 007646650_007646650_03109_22.png
+Text: Lee
+Confidence: 0.220
+
+File: 007646627_007646627_03385_22.png
+Text: EI
+Confidence: 0.180
+
+File: 007644572_007644572_00169_22.png
+Text: Rae
+Confidence: 0.140

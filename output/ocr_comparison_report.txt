@@ -1,0 +1,31 @@
+OCR Results Comparison Report
+===========================
+Generated on: 2024-11-07 09:58:30
+
+Recommendation
+--------------
+Based on the analysis, EasyOCR is moderately recommended for this handwriting recognition task.
+Overall scores: EasyOCR: 25.37, Tesseract: 16.13
+
+Performance Metrics
+-----------------
+
+EasyOCR:
+- Total Images Processed: 100
+- Successful Recognitions: 54
+- Empty Results: 0
+- Recognition Rate: 54.0%
+- Average Confidence: 0.094
+- High Confidence Results (>0.7): 0
+
+Tesseract:
+- Total Images Processed: 100
+- Successful Recognitions: 27
+- Empty Results: 0
+- Recognition Rate: 27.0%
+- Average Confidence: 0.133
+- High Confidence Results (>0.7): 0
+
+Conclusion
+----------
+EasyOCR shows better overall performance for this specific task, with a moderately higher combined score considering recognition rate, confidence scores, and successful recognitions.
