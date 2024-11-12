@@ -97,7 +97,7 @@ def process_handwritten_text(data_dir, batch_size=16, output_file='results.txt')
 
 if __name__ == "__main__":
     # Process all images in the data/snippets directory
-    data_dir = "data"
+    data_dir = "enhanced_image_preprocessor_samples"
     
     try:
         results = process_handwritten_text(
