@@ -15,7 +15,7 @@ class HandwrittenTextDataset(Dataset):
         
         # Get all image paths from the snippets folder
         self.image_paths = []
-        snippets_dir = Path(data_dir) / 'snippets'
+        snippets_dir = Path(data_dir) / 'output'
         
         if not snippets_dir.exists():
             raise ValueError(f"Directory not found: {snippets_dir}")
